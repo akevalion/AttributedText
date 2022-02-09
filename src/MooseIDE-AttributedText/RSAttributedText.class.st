@@ -57,14 +57,7 @@ RSAttributedText >> example02 [
 	string := String fromByteArray: self sourceCodeExample base64Decoded.
 	self text: string.
 	{ {'context'. 'function'} -> RSTagEmphasisAttribute } do: [:as |
-		as key do: [ :word | 
-			(string allRangesOfSubstring: word) do: [ :range |
-				self 
-					addAttribute: as value new 
-					from: range first 
-					to: range last.
-				 ]
-			 ]
+		as key do: [ :word | self tagAll: word in: string with: as value ]
 		 ].
 	^ self
 	
@@ -78,14 +71,7 @@ RSAttributedText >> example03 [
 '.
 	self text: string.
 	{ {'context'. 'function'} -> RSTagEmphasisAttribute } do: [:as |
-		as key do: [ :word | 
-			(string allRangesOfSubstring: word) do: [ :range |
-				self 
-					addAttribute: as value new 
-					from: range first 
-					to: range last.
-				 ]
-			 ]
+		as key do: [ :word | self tagAll: word in: string with: as value ]
 		 ].
 	^ self
 	

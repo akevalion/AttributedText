@@ -17,6 +17,7 @@ RSTagEmphasisAttribute >> renderIn: aShape [
 		size: 10;
 		color: color;
 		translateTo: startLine point ;
+		when: RSMouseClick send: #inspect to: self;
 		yourself.
 	aShape addShape: dot.
 	line := RSLine new
@@ -24,7 +25,6 @@ RSTagEmphasisAttribute >> renderIn: aShape [
 		endPoint: endLine point;
 		color: color;
 		width: 2;
-		when: RSMouseClick send: #inspect to: self;
 		yourself.
 	aShape addShape: line
 ]
