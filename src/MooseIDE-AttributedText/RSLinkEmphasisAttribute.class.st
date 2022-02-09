@@ -1,23 +1,19 @@
-"
-TODO
-"
 Class {
-	#name : #RSEmphasisAttribute,
+	#name : #RSLinkEmphasisAttribute,
 	#superclass : #RSAbstractTextAttribute,
 	#category : #'MooseIDE-AttributedText'
 }
 
 { #category : #rendering }
-RSEmphasisAttribute >> renderIn: aShape [
-	| startLine endLine line |
+RSLinkEmphasisAttribute >> renderIn: aShape [
+	| startLine endLine line  |
 	startLine := self startLine: aShape.
 	endLine := self endLine: aShape.
 	line := RSLine new
 		startPoint: startLine point;
 		endPoint: endLine point;
-		color: {Color red. Color yellow. Color green } atRandom;
-		width: 2;
-		when: RSMouseClick send: #inspect to: self;
+		width: 1;
 		yourself.
-	aShape addShape: line
+	aShape addShape: line.
+	aShape when: RSMouseClick send: #inspect to: self
 ]
