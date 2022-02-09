@@ -34,7 +34,44 @@ RSAttributedText >> canvasController [
 
 { #category : #examples }
 RSAttributedText >> example01 [
+	"TagEmphasis"
 	<script: 'self new example01 open'>
+	| string |
+	string := 'context function foo base 123 context
+function 123
+  123function123
+  123   context    context
+fun
+  context'.
+	self text: string.
+	self tagAll: 'context' in: string with: RSTagEmphasisAttribute.
+	self tagAll: 'function' in: string with: RSTagEmphasisAttribute.
+	^ self
+	
+]
+
+{ #category : #examples }
+RSAttributedText >> example02 [
+	"LinkEmphasis"
+	<script: 'self new example02 open'>
+	| string |
+	string := 'context function foo base 123 context
+function 123
+  123function123
+  123   context    context
+fun
+  context'.
+	self text: string.
+	self tagAll: 'context' in: string with: RSLinkEmphasisAttribute.
+	self tagAll: 'function' in: string with: RSLinkEmphasisAttribute.
+	^ self
+	
+]
+
+{ #category : #examples }
+RSAttributedText >> example03 [	
+	"micing TagEmphasis and LinkEmphasis on the same substring"
+	<script: 'self new example03 open'>
 	| string |
 	string := 'context function foo base 123 context
 function 123
@@ -51,24 +88,11 @@ fun
 ]
 
 { #category : #examples }
-RSAttributedText >> example02 [
-	<script: 'self new example02 open'>
+RSAttributedText >> example04 [
+	"big text"
+	<script: 'self new example04 open'>
 	| string |
 	string := String fromByteArray: self sourceCodeExample base64Decoded.
-	self text: string.
-	{ {'context'. 'function'} -> RSTagEmphasisAttribute } do: [:as |
-		as key do: [ :word | self tagAll: word in: string with: as value ]
-		 ].
-	^ self
-	
-]
-
-{ #category : #examples }
-RSAttributedText >> example03 [
-	<script: 'self new example03 open'>
-	| string |
-	string := '      context = canvas.getContext("2d")     context,  context
-'.
 	self text: string.
 	{ {'context'. 'function'} -> RSTagEmphasisAttribute } do: [:as |
 		as key do: [ :word | self tagAll: word in: string with: as value ]
