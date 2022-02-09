@@ -82,15 +82,31 @@ fun
 	self text: string.
 	self tagAll: 'context' in: string with: RSTagEmphasisAttribute.
 	self tagAll: 'function' in: string with: RSLinkEmphasisAttribute.
-	self tagAll: 'function' in: string with: RSTagEmphasisAttribute.
+	self tagAll: '123' in: string with: RSTagEmphasisAttribute.
 	^ self
 	
 ]
 
 { #category : #examples }
 RSAttributedText >> example04 [
-	"big text"
+	"several lines"
 	<script: 'self new example04 open'>
+	| string |
+	string := 'cinco
+uno cuatro
+     dos
+tres
+foooo'.
+	self text: string.
+	self addAttribute: RSTagEmphasisAttribute new from: 7 to: 25.
+	^ self
+	
+]
+
+{ #category : #examples }
+RSAttributedText >> example05 [
+	"big text"
+	<script: 'self new example05 open'>
 	| string |
 	string := String fromByteArray: self sourceCodeExample base64Decoded.
 	self text: string.

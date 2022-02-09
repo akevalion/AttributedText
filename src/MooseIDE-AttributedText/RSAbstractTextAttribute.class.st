@@ -27,6 +27,9 @@ RSAbstractTextAttribute >> findLine: aShape index: index [
 			line := aShape shapes at: lineNumber.
 			^ RSLineResult new
 				lineNumber: lineNumber;
+				start: start;
+				end: end;
+				index: index;
 				line: line;
 				point: (self pointFor: line at: index - start);
 				yourself

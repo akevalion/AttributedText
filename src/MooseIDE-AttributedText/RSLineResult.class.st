@@ -7,10 +7,37 @@ Class {
 	#instVars : [
 		'lineNumber',
 		'line',
-		'point'
+		'point',
+		'start',
+		'end',
+		'index'
 	],
 	#category : #'MooseIDE-AttributedText'
 }
+
+{ #category : #accessing }
+RSLineResult >> end [
+
+	^ end
+]
+
+{ #category : #accessing }
+RSLineResult >> end: anObject [
+
+	end := anObject
+]
+
+{ #category : #accessing }
+RSLineResult >> index [
+
+	^ index
+]
+
+{ #category : #accessing }
+RSLineResult >> index: anObject [
+
+	index := anObject
+]
 
 { #category : #accessing }
 RSLineResult >> line [
@@ -46,4 +73,16 @@ RSLineResult >> point [
 RSLineResult >> point: anObject [
 
 	point := anObject
+]
+
+{ #category : #accessing }
+RSLineResult >> start [
+
+	^ start
+]
+
+{ #category : #accessing }
+RSLineResult >> start: anObject [
+
+	start := anObject
 ]
