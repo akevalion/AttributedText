@@ -22,22 +22,27 @@ RSLinkEmphasisAttribute >> renderIn: aShape [
 	aShape addShape: line.
 	label := aShape shapes at: startLine lineNumber.
 	rect := startLine point + (0@ label height negated) corner: endLine point.
-	box := RSBox new
-		color: Smalltalk ui theme backgroundColor;
-		noBorder;
-		fromRectangle: rect;
-		flag: #'TODO - highlightling lines can use RSHighlightable';
-		when: RSMouseEnter do: [ :evt | line width: 3; signalUpdate ];
-		when: RSMouseLeave do: [ :evt | line width: 1; signalUpdate ];
-		yourself.
-	aShape addShape: box.
-	self flag: #'hack - it should be use break these in different labels'.
 	newLabel := RSLabel new
 		text: (aShape model copyFrom: from to: to);
 		position: rect floatCenter;
 		italic;
 		color: Smalltalk ui theme textColor;
 		yourself.
+	box := RSBox new
+		color: Smalltalk ui theme backgroundColor;
+		noBorder;
+		fromRectangle: rect;
+		flag: #'TODO - highlightling lines can use RSHighlightable';
+		when: RSMouseEnter do: [ :evt | 
+			newLabel bold.
+			line width: 3; signalUpdate ];
+		when: RSMouseLeave do: [ :evt | 
+			newLabel normal.
+			line width: 1; signalUpdate ];
+		yourself.
+	aShape addShape: box.
+	self flag: #'hack - it should be use break these in different labels'.
+
 	aShape addShape: newLabel.
 	box when: RSMouseClick send: #inspect to: self
 ]
